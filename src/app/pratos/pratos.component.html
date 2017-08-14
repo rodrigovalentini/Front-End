@@ -1,0 +1,59 @@
+
+<h1>Cadastro de pratos</h1>
+
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th class="text-left">Restaurante:</th>
+      <th class="text-left">Descrição:</th>
+      <th class="text-left">Valor:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prato of pratos ">
+      <td>{{prato.RESTAURANTE.NOME}}</td>
+      <td>{{prato.DESCRICAO}}</td>
+      <td>{{prato.VALOR | currency:'BRL':true:'1.0-2'}}</td>
+      <button type="button" class="btn btn-danger pull-right" (click)="delete(prato)"> <span class="glyphicon glyphicon-remove"></span></button>
+      <button type="button" class="btn btn-info pull-right" (click)="edit(prato)"> <i class="fa fa-edit"></i> </button>
+    </tr>
+  </tbody>
+</table>
+
+<section>
+  <div class="container">
+    <div class="col-md-12">
+
+      <h2>{{formLabel}}</h2>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="well well-sm">
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-xs-8 col-sm-2">Restaurante: </label>
+            <div class="col-xs-12 col-sm-6">
+              <input class="form-control" type="text" formControlName="CODIGO_RESTAURANTE">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-xs-8 col-sm-2">Descrição: </label>
+            <div class="col-xs-12 col-sm-6">
+              <input class="form-control" type="text" formControlName="DESCRICAO">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-xs-8 col-sm-2">Valor: </label>
+            <div class="col-xs-12 col-sm-6">
+              <input class="form-control" type="text" formControlName="VALOR">
+
+            </div>
+          </div>
+          <button type="submit" [disabled]="!form.valid">Submeter</button>
+          <button type="button" (click)="cancel()">Cancelar</button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+	<div class="container">
+		<div class="modal fade" id="modal-1">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					 <div class="modal-header">
+					 	<button type="button" class="close" data-dismiss="modal">&times;</button>
+					 </div>
+					 <div class="modal-body">
+					 	<section>
+      <div class="container">
+        <div class="col-md-9">
+
+          <h2>{{formLabel}}</h2>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" class="well well-sm">
+            <div class="form-vertical">
+              <div class="form-group">
+                <label class="control-label col-xs-4 col-sm-6">Nome: </label>
+                <div class="col-xs-12 col-sm-12">
+                  <input class="form-control" type="text" formControlName="NOME">
+                </div>
+              </div>
+              <div class="modal-footer">
+              <button type="submit" [disabled]="!form.valid">Submeter</button>
+              <button type="button" (click)="cancel()">Cancelar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+					 </div>
+					 <div class="modal-footer">
+					 	<a href="" class="btn btn-primary" data-dismiss="modal" >Fechar</a>
+					 </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>	
+</html>
+<div class="container">
+  <div class="col-md-12">
+
+    <h1>Cadastro de restaurantes</h1>
+
+    <form (ngSubmit)="ngOnInit()" class="well well-sm">
+      <div class="form-group">
+        <input type="text" class="form-control" name="NOME" [(ngModel)]="NOME" placeholder="Digite o nome do restaurante...">
+      </div>
+      <button type="button" class="btn btn-info btn-lg" (click)="ngOnInit()"> <span class="glyphicon glyphicon-search"></span> Procurar</button>
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal-1"> <span class="glyphicon glyphicon-plus"></span>{{formLabel}}</button>
+    </form>
+
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="text-left">Código:</th>
+          <th class="text-left">Restaurantes:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let restaurante of restaurantes ">
+          <td>{{restaurante.CODIGO}}</td>
+          <td>{{restaurante.NOME}}</td>
+          <button type="button" class="btn btn-danger pull-right" (click)="delete(restaurante)"> <span class="glyphicon glyphicon-remove"></span></button>
+          <button type="button" class="btn btn-info pull-right" (click)="edit(restaurante)"> <i class="fa fa-edit"></i> </button>
+        </tr>
+      </tbody>
+    </table>
+
+    
